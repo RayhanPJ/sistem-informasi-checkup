@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
         debug: false,
         fallbackLng: 'en',
         backend: {
-          loadPath: assetsPath + 'json/locales/{{lng}}.json'
+          loadPath: assetsPath + '/json/locales/{{lng}}.json'
         },
         returnObjects: true
       })
@@ -461,7 +461,7 @@ function isMacOS() {
 function loadSearchData() {
   const searchJson = $('#layout-menu').hasClass('menu-horizontal') ? 'search-horizontal.json' : 'search-vertical.json';
 
-  fetch(assetsPath + 'json/' + searchJson)
+  fetch(assetsPath + '/json/' + searchJson)
     .then(response => {
       if (!response.ok) throw new Error('Failed to fetch data');
       return response.json();

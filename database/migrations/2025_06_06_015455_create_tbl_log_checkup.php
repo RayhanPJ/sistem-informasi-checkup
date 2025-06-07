@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('tbl_log_checkup', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_history_checkup')->constrained('tbl_history_checkup');
+            $table->foreignId('created_by')->constrained('users');
+            $table->foreignId('updated_by')->constrained('users');
             $table->timestamps();
         });
     }
