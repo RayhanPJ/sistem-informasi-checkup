@@ -43,6 +43,8 @@
     <!-- Vendors CSS -->
 
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 
     <!-- endbuild -->
 
@@ -89,10 +91,54 @@
 
 <script src="{{asset('assets/vendor/js/menu.js')}}"></script>
 
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
 
 <!-- Main JS -->
 
 <script src="{{asset('assets/js/main.js')}}"></script>
+
+<script>
+    $('#formAuthentication').submit(function(e) {
+        e.preventDefault();
+
+        var formData = $(this).serialize();
+
+        $.ajax({
+            url: '{{ route("login") }}',
+            method: 'POST',
+            data: formData,
+            success: function(response) {
+                if(response.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: response.message,
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = '{{ route("dashboard") }}';
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message,
+                    });
+                }
+            },
+            error: function(xhr) {
+                var response = xhr.responseJSON;
+                var message = response && response.message ? response.message : 'An error occurred';
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: message,
+                });
+            }
+        });
+    });
+
+</script>
 
 </body>
 </html>

@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HistoryCheckupRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,7 +22,16 @@ class HistoryCheckupRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'username' => 'required',
+            'password' => 'required'
+        ];
+    }
 
+    public function massage()
+    {
+        return [
+          'username.required' => 'Username wajib diisi',
+            'password.required' => 'password wajib diisi'
         ];
     }
 }

@@ -5,35 +5,45 @@
             "nama": "Raka Saputra",
             "nik": "3201123456789012",
             "tanggal_mcu": "2023-03-15",
-            "status": "Fit"
+            "created_at": "2023-03-15",
+            "status": "Fit",
+            "created_by": "Admin"
         },
         {
             "id_mcu": "MCU-2023-002",
             "nama": "Siti Aminah",
             "nik": "3201123456789013",
             "tanggal_mcu": "2023-04-20",
-            "status": "Fit With Note"
+            "created_at": "2023-04-20",
+            "status": "Fit With Note",
+            "created_by": "Nurse 1"
         },
         {
             "id_mcu": "MCU-2023-003",
             "nama": "Agus Santoso",
             "nik": "3201123456789014",
             "tanggal_mcu": "2023-05-10",
-            "status": "Pending"
+            "created_at": "2023-05-10",
+            "status": "Pending",
+            "created_by": "Nurse 2"
         },
         {
             "id_mcu": "MCU-2023-004",
             "nama": "Dewi Lestari",
             "nik": "3201123456789015",
             "tanggal_mcu": "2023-06-05",
-            "status": "Unfit"
+            "created_at": "2023-06-05",
+            "status": "Unfit",
+            "created_by": "Nurse 3"
         },
         {
             "id_mcu": "MCU-2023-005",
             "nama": "Budi Prasetyo",
             "nik": "3201123456789016",
             "tanggal_mcu": "2023-06-20",
-            "status": "Unfit"
+            "created_at": "2023-06-20",
+            "status": "Unfit",
+            "created_by": "Nurse 4"
         }
     ]
 }

@@ -43,6 +43,8 @@
     <!-- Vendors CSS -->
 
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 
     <!-- endbuild -->
 
@@ -83,7 +85,9 @@
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Menu -->
-                @include('layouts.menu')
+                @if(session()->has('user'))
+                    @include('layouts.menu')
+                @endif
                 <!-- / Menu -->
 
                 <!-- Content -->
@@ -153,6 +157,7 @@
 <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/swiper/swiper.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
 
 <!-- Main JS -->
 
@@ -160,6 +165,36 @@
 
 <!-- Page JS -->
 <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
-<script src="{{asset('assets/js/tables-datatables-extensions.js')}}"></script>
+{{--<script src="{{asset('assets/js/tables-datatables-extensions.js')}}"></script>--}}
+
+<script>
+    function logout() {
+        $.ajax({
+            url: '{{ route("logout") }}',
+            method: 'GET',
+            success: function(response) {
+                if(response.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Logged out',
+                        text: response.message,
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = '{{ url("/") }}';
+                    });
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Could not log out, please try again.',
+                });
+            }
+        });
+    }
+</script>
+@yield('script')
 </body>
 </html>
