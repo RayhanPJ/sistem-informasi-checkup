@@ -27,7 +27,7 @@
                             <span class="input-group-text">NIK</span>
                             <div class="form-floating form-floating-outline">
                                 <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
                                     id="nik"
                                     placeholder="3201123456789012"
@@ -197,7 +197,24 @@
                         $('#mcu_pekerjaan p.fst-italic').text(response.pekerjaan ?? '-');
                         $('#mcu_provider p.fw-bold').text(response.provider ?? '-');
                         $('#mcu_tanggal_mcu p.text-dark').text(new Date(response.tanggal_mcu).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }) ?? '-');
-                        $('#mcu_status_mcu p.status-fit').text(response.status_mcu ?? '-');
+
+                        // Update status_mcu dengan kelas bg-label dinamis
+                        var $statusElem = $('#mcu_status_mcu p.status-fit');
+                        var status = response.status_mcu ?? '-';
+
+                        $statusElem.text(status);
+                        $statusElem.removeClass('bg-label-success bg-label-warning bg-label-primary bg-label-danger'); // reset kelas bg-label
+
+                        if (status === 'Fit') {
+                            $statusElem.addClass('bg-label-success');
+                        } else if (status === 'Fit With Note') {
+                            $statusElem.addClass('bg-label-warning');
+                        } else if (status === 'Pending') {
+                            $statusElem.addClass('bg-label-primary');
+                        } else if (status === 'Unfit') {
+                            $statusElem.addClass('bg-label-danger'); // default jika tidak ada status yang cocok
+                        }
+
                         $('#mcu_berlaku_sampai').text(new Date(response.tanggal_mcu).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }) ?? '-');
                         $('#download_hasil_mcu').attr('href', response.link_hasil_mcu ?? '#');
 
@@ -209,6 +226,7 @@
                         $('#medicalModal').modal('hide');
                     }
                 });
+
             });
         });
 

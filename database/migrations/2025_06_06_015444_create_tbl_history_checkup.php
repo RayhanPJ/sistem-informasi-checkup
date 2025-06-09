@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('jenis_kelamin');
             $table->string('pekerjaan');
             $table->string('provider');
-            $table->string('nik');
+            $table->string('nik')->unique();
             $table->date('tanggal_mcu');
             $table->string('status_mcu');
             $table->string('link_hasil_mcu');

@@ -92,7 +92,7 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="nik" class="form-label">NIK</label>
-                                    <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukkan NIK"
+                                    <input type="number" class="form-control" id="nik" name="nik" placeholder="Masukkan NIK"
                                            required/>
                                 </div>
                             </div>
@@ -338,6 +338,18 @@
             function resetForm() {
                 $('#formMcu')[0].reset();
                 $('#id').val('');
+                $('#id_mcu').val('');
+                $('#nama_pasien').val('');
+                $('#tempat_lahir').val('');
+                $('#tanggal_lahir').val('');
+                $('#nik').val('');
+                $('#jenis_kelamin').val('');
+                $('#alamat').val('');
+                $('#pekerjaan').val('');
+                $('#provider').val('');
+                $('#tanggal_mcu').val('');
+                $('#status_mcu').val(''); // status MCU (fit, unfit, etc)
+                $('#link_hasil_mcu').val('');
                 currentEditId = null;
             }
 
@@ -400,6 +412,19 @@
                     data: formData,
                     success: function(response) {
                         $('#modalCenter').modal('hide');
+                        $('#id').val('');
+                        $('#id_mcu').val('');
+                        $('#nama_pasien').val('');
+                        $('#tempat_lahir').val('');
+                        $('#tanggal_lahir').val('');
+                        $('#nik').val('');
+                        $('#jenis_kelamin').val('');
+                        $('#alamat').val('');
+                        $('#pekerjaan').val('');
+                        $('#provider').val('');
+                        $('#tanggal_mcu').val('');
+                        $('#status_mcu').val(''); // status MCU (fit, unfit, etc)
+                        $('#link_hasil_mcu').val('');
                         Swal.fire('Sukses', response.message || 'Data berhasil disimpan', 'success');
                         $('.dt-scrollableTable').DataTable().ajax.reload(null, false); // reload datatable tanpa reset pagination
                     },
